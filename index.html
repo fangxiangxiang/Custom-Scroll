@@ -2,9 +2,24 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>scroll</title>
-	<link rel="stylesheet" type="text/css" href="./use(yutian).css">
+	<title>Custom-Scroll</title>
 	<style type="text/css">
+		* {
+			padding: 0;
+			margin: 0;
+			border: 0;
+		}
+		ul {
+			list-style: none;
+		}
+		.clearfix:after { 
+			content: “.”; 
+			display: block; 
+			height: 0; 
+			clear: both; 
+			visibility: hidden; 
+		} 
+		.clearfix {display: inline-block;} 
 		body{
 			background: #CCC;
 		}
