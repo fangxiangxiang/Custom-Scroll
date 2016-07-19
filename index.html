@@ -388,7 +388,9 @@
 			Scroll.CusScrollBar = CusScrollBar; /*给全局对象添加属性为构造函数CuScrolBar*/
 			                                    /*等于将匿名函数里的方法暴露出来,也可以用实参里的window作为全局对象，然后win.···调用，但不建议*/
 
-		})(window,document,jQuery);//通过传入实参，可以使window、document、jQuery对象变为自调用函数的局部变量
+		})(window,document,jQuery);
+		//通过传入实参，可以使window、document、jQuery对象变为自调用函数的局部变量（即把函数参数作为局部变量使用），
+		//这样当在代码块中访问这些对象时，不需要将作用域链回退到顶层作用域，从而可以更快地访问这些对象，
 		//通过创建一个自调用匿名函数，创建了一个特殊的函数作用域，该作用域中的代码不会和已有的同名函数、方法和变量以及第三方库冲突。
 
 			
