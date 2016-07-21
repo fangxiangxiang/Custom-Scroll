@@ -1,412 +1,634 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<title>Custom-Scroll</title>
-	<style type="text/css">
-		* {
-			padding: 0;
-			margin: 0;
-			border: 0;
-		}
-		ul {
-			list-style: none;
-		}
-		.clearfix:after { 
-			content: “.”; 
-			display: block; 
-			height: 0; 
-			clear: both; 
-			visibility: hidden; 
-		} 
-		body{
-			background: #CCC;
-		}
-		.scroll-demo{
-			width: 540px;
-			border: 1px solid #e5e5e5;
-			background: #fff;
-			margin: 30px auto;
-		}
-		.scroll-tab{
-			height: 34px;
-			border-bottom: 1px solid #e5e5e5;
-			color: #666;
-			background: #f8f8f8;
-		}
-		.scroll-tab .tab-item{
-			float: left;
-			font: 14px/34px "Microsoft Yahei";
-			height: 34px;
-			text-align: center;
-			border-right: 1px solid #e5e5e5;
-			padding: 0 20px;
-		}
-		.scroll-tab .tab-active{
-			color: #00be3c;
-			background: #fff;
-			border-top: 2px solid #00be3c;
-			margin:-1px 0;
-		}
-		/*滚动内容区*/
-		.scroll-wrap{
-			position: relative;
-			width: 100%;
-			height: 300px;
-		}
-		/*滚动内容区*/
-		.scroll-wrap .scroll-cont{
-			height: 100%;
-			padding: 0 15px;
-			overflow: hidden;
-		}
-		.scroll-wrap .scroll-cont h3{
-			font: 16px/3 "Microsoft Yahei";  /*3是设置行高：是文字16px的三倍(48px)*/
-			text-align: center;
-		}
-		.scroll-wrap .scroll-cont p{
-			font-size: 14px;
-			line-height: 20px;
-			text-indent: 2px;
-			margin-bottom:10px;
-		}
-		/*滚动条*/
-		.scroll-wrap .scroll-bar{
-			position: absolute;   /*相对于滚动内容区做绝对定位*/
-			top: 0;
-			right: 0;
-			width: 10px;
-			height: 100%;
-			background-color: #eaeaea;
-		}
-		/*滑块*/
-		.scroll-wrap .scroll-slide{
-			position: absolute;  /*相对于滚动条做绝对定位的*/
-			top: 0;
-			left: 1px;
-			width: 8px;
-			height: 30px;
-			background-color: #fff;
-		}
-		.scroll-wrap .scroll-cont .scroll-ol{
-			padding-bottom: 1px;  /* 为了防止margin合并的问题 */
-		}
-	</style>
-</head>
-<body>
-	<!-- 示例容器 -->
-	<div class="scroll-demo">
-		<!-- 标签切换区 -->
-		<ul class="scroll-tab clearfix">
-			<li class="tab-item tab-active">第一篇</li>
-			<li class="tab-item">第二篇</li>
-			<li class="tab-item">第三篇</li>
-			<li class="tab-item">第四篇</li>
-		</ul>
-		<!-- 滚动内容区 -->
-		<div class="scroll-wrap">
-			<!-- 滚动内容 -->
-			<div class="scroll-cont">
-				<h3 class="anchor">春天来了</h3>
-				<div class="scroll-ol">
-					<p>春天来了，草长莺飞，万物复苏，到处充满勃勃生机。</</p>
-					<p>春天来了，春风给新钻出地面的小草披上了绿衣。春天来了，春精灵给了桃树妹妹一个深情的吻，桃树妹妹羞红了脸儿。春天来了，柳树发芽了，那芽儿欢快地生长着，嫩嫩的、绿绿的，风微微地吹着，小芽儿随着柳枝在风中摇晃，就像一个个跳动的音符，正演奏着春天的赞歌。</p>
-					<p>春天来了，阳光明媚。冻冰了的小河在阳光照耀下懒洋洋地舒展着身子，慢悠悠地哼着小曲，舒坦极了。河里的小鱼自由自在地嬉戏着，不时嘴里还冒出几个泡泡，甭提多开心。小鸭子欢快地在水面上游动，不时呼朋引伴结队而行，甭提多快活。在这暖暖的春日里，小孩子们在田野里、小河边、草地上唱着歌儿，采着野花，享受着美好的春光。</p>
-					<p>春天来了，青蛙“呱呱”地叫着，忙着在田里捉害虫；蜜蜂“嗡嗡”地叫着，忙着在在花丛中采花酿蜜；燕子“唧唧”地叫着，忙着在屋檐下搭窝筑巢；布谷鸟“布谷，布谷”地叫着，忙着催促人们春耕播种……“沙沙沙”春雨滋润着大地，让大地焕然一新。“轰轰隆隆”春雷响彻云霄，敲响了迎春交响曲中的大鼓。</p>
-					<p>春光竟是那么的浪漫，那么的饱满。它把一冬天蕴藏的精神、力量都尽情地释放出来。</p>
-					<p>春天来了，草长莺飞，万物复苏，到处充满勃勃生机。</p>
-				</div>
-				<h3 class="anchor">夏天来了</h3>
-				<div class="scroll-ol">
-					<p>夏天来了，草木也长得特别茂盛，枝繁叶茂的大树为人们撑起了一片浓浓的绿荫。狗躲在阴凉处，伸出长长的舌头，大口地喘着粗气。鱼儿也急忙露出了水面，吐着气泡。池塘里面开满了荷花，它们在池塘里竞相开放，飘出一股淡淡的清香。</p> 
-					<p>夏天来了，池塘里的小鱼儿在快乐地嬉戏，小青蛙端坐在荷叶上大声地歌唱。</p>
-					<p>夏天来了，大地怕热了，纷纷戴上绿色的帽子。小孩子是可爱的鱼，光着身子在清凉的世界里，游来游去。树枝是害羞的少女，扯片翠绿的裙子，打扮自己。小伙子们的笑语惊醒了星星，悄悄派出萤火虫探个究竟。老汉在庭院中闲扯，把蒲扇扇得月光悠长悠长…… </p>
-					<p>夏天来了，大树下面的小花都开了，五彩斑斓真美啊！在大路旁边，大树长得非常的繁茂，宽大的树叶像孩子们的手在微风中欢快的拍打着。</p>
-				</div>
-				<h3 class="anchor">秋天来了</h3>
-				<div class="scroll-ol">
-					<p>秋天来了，漫长的夏天过去了，我又迎来了一个新学期，秋天是个金色的季节，也是我最喜欢的季节。</p>
-					<p>秋天来了，小动物也忙碌了起来。蚂蚁从夏天就开始储存粮食，小松鼠在地上捡拾掉落的松果，小蜜蜂把早已储存好的蜂蜜装满了一个个蜂窝，小燕子飞向南方，等冬天过后再回来。还有一些冬眠动物，如乌龟、蛇、刺猬、青蛙也已经准备好了过冬的食物。</p>
-					<p>秋天来了，树叶被调皮的秋风一片片涂黄，把绿叶变成了红叶，再摘下来悄悄珍藏。秋风把小草、小花涂黄，就在这时，菊花、桂花竞相开放了，把香味吹到千里之外，让人们享受这醉人的花香。</p>
-					<p>秋天来了，原来的炎热一下子销声匿迹了，刚关上空调，秋天就真的来了。</p>
-					<p>秋天来了，我把秋天美美地藏进博客里……</p>
-					<p>又一个秋天来到了，时间过得真快啊！早晨上街，我穿上了长袖T恤，却仍觉得冷冷的。夏天，真的要走了吗？</p>
-					<p>秋天来了，路上的行人似乎一下子多了起来。杏色匆匆地赶路。我突然想起唐代诗人张籍的一首诗：“洛阳城里见秋风，欲作家书意万重。复恐匆匆说不尽，行人临发又开封。”秋天，的确是思乡的季节，身在异乡的游子，见到这凄凉的秋景，又怎能不生思乡</p>
-				</div>
-				<h3 class="anchor">冬天来了</h3>
-				<div class="scroll-ol">
-					<p>十月的金秋已悄然离去，而寒冷的冬天却悄悄来临了。你瞧！我们家门前的那棵梧桐树，春天还非常茂盛，密密麻麻的绿叶遮住了阳光，可一到冬天，它那美丽的“绿发”已脱落了，没过多久，就变成了一棵“光头树”。还有那些小草，变得枯黄，路边的小花都谢了，远远望去，仿佛一片无边无际的大沙漠，田里的谷子已经干得不成样子了。走在路上，寒冷的冬风呼呼地刮着我的脸，好似无数把无形刀，插进我的脸，我直打哆嗦，不禁叫起来：“冬天真冷啊！”</p>
-
-				</div>
-				<div class="correct-bat"></div> <!-- 补足高度 -->
-			</div>
-			<!-- 滚动条 -->
-			<div class="scroll-bar">
-				<!-- 滚动的滑块 -->
-				<div class="scroll-slide"></div>
-			</div>
-		</div>
-	</div>
-	<script type="text/javascript" src="./jquery.js"></script>
-	<script type="text/javascript">
-		var Scroll = {}; /*全局对象*/
-		(function(win,doc,$){     		 /*自调用的匿名函数*/
-
-			function CusScrollBar(options){ /*形参 用来在实例化的时候传入一些配置信息*/
-				this._init(options);    /*实例化的时候，this就代表那个实例*/
+<html ng-app="app">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no,minimal-ui">
+		<meta name="format-detection" content="telephone=no">
+		<link rel="stylesheet" href="css/reset.css">
+		<style type="text/css">
+		    html{
+		        width:100%;
+		        height:100%;
+		        overflow-x:hidden;
+		    }
+			body{
+			    text-align:left;
+			    width:100%;
+			    overflow：hidden;
+			    background:#e9dfc7;
+			    bottom:64px;
 			}
+			.m-read-content{
+			    font-size:14px;
+			    color:#555;
+			    line-height:31px;
+			    padding:15px;
+			}
+			.m-read-content h4{
+			    font-size:20px;
+			    color:#736357;
+			    border-bottom:solid 1px #736357;
+			    letter-spacing:2px;
+			    margin:0 0 1em 0;
+			}
+			.m-read-content p{
+			    text-indent:2em;
+			    margin:0.5em 0;
+			    letter-spacing:0px;
+			    line-height:24px;
+			}
+			.u-tab{
+			    height:34px;
+			    margin:10px auto;
+			    line-height:34px;
+			    border-radius:8px;
+			    border:1px solid #858382;
+			    font-size:12px;
+			    background:#000;
+			    opacity:0.9;
+			}
+			.u-tab li{
+			    display:inline-block;
+			    width:49%;
+			    border-right:1px solid #858382;
+			    text-align:center;
+			    color:#fff;
+			}
+			.u-tab li:nth-child(2){
+			    border-right:none;
+			}
+			.m-button-bar{
+			    width:70%;
+			    max-width:800px;
+			    padding:5px;
+			    margin:0 auto;
+			}
+			.top-nav{
+			    position:fixed;
+			    top:0px;
+			    height:50px;
+			    width:100%;
+			    z-index:9999;
+			    background:#000;
+			}
+			.icon-back{
+			    position:absolute;
+			    top:14px;
+			    left:10px;
+			    width:23px;
+			    height:23px;
+			    background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFAAAABQCAYAAACOEfKtAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyNpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNS1jMDE0IDc5LjE1MTQ4MSwgMjAxMy8wMy8xMy0xMjowOToxNSAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIChNYWNpbnRvc2gpIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOkJGMkEyQkQxMjdBNDExRTU4NjA2QTJDMjFDQ0I0ODhEIiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOkJGMkEyQkQyMjdBNDExRTU4NjA2QTJDMjFDQ0I0ODhEIj4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6QkYyQTJCQ0YyN0E0MTFFNTg2MDZBMkMyMUNDQjQ4OEQiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6QkYyQTJCRDAyN0E0MTFFNTg2MDZBMkMyMUNDQjQ4OEQiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz4Ia560AAAHWklEQVR42uyd7W9U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
+);
+                background-size:contain;
+			}
+			.nav-title{
+			    position:absolute;
+			    top:16px;
+			    left:42px;
+			    color:#d5d5d6;
+			}
+			.nav-pannel-bk{    /*嵌套这个(背景)层是为了让div透明而平行的层下的圆圈不透明*/
+			    position:fixed;
+			    bottom:71px;
+			    height:135px;
+			    width:100%;
+			    background:#000;
+			    opacity:0.9;
+			    z-index:10000;
+			}
+			.nav-pannel{
+			    position:fixed;
+			    bottom:71px;
+			    height:135px;
+			    width:100%;
+			    z-index:10001;     /*嵌套多一层*/
+			    color:#fff;
+			}
+			.child-mod{
+			    padding:5px 10px;
+			    margin:15px;
+			}
+			.child-mod span{
+			    display:inline-block;
+			    padding-right:20px;
+			    padding-left:10px;
+			}
+			.font-size-button{
+			    background:none;
+			    border:1px #8c8c8c solid;
+			    color:#fff;
+			    border-radius:16px;
+			    padding:5px 40px;
+			    
+			}
+			 .child-mod button:nth-child(2){     /*css3的伪类选择器*/
+			        margin-right:10px;
+			 }
+			 .bk-container{
+			     position:relative;  /*父元素相对定位*/
+			     width:30px;
+			     height:30px;
+			     border-radius:15px;
+			     background:#fff;
+			     display:inline-block;
+			     vertical-align:-11px;/*垂直对齐*/
+			     margin-left:7px;
+			 }
+			 .bk-container-current{
+			     position:absolute;  /*圈圈对不齐圆 设父元素相对定位定位*/
+			     width:32px;
+			     height:32px;
+			     border-radius:16px;
+			     border:1px #ff7800 solid;
+			     display:inline-block;
+			     top:-2px;   /*搭配定位*/
+			     left:-2px;
+			 }
+			.footer-nav{
+			    position:fixed;
+			    bottom:0px;
+			    height:auto;
+			    width:100%;
+			    z-index:9999;
+			    background:#000;
+			}
+			.footer-nav ul li{
+			    float:left;
+			    width:33%;
+			    margin:7px auto;
+			    text-align:center;
+			    color:#fff;
+			}
+			.tubiao{
+			    display:block;
 
-			$.extend(CusScrollBar.prototype,{
-				_init:function(options){
-					var self = this; 
-					console.log(this);
-					self.options = {
-						/*下面这些属性以字面量的形式存储在self.option属性中*/
-						scrollDir 		: "y", //滚动的方向
-						contSelector 	: "", //滚动内容区选择器
-						barSelector     : "", //滚动条选择器
-						sliderSelector  : "", //滚动滑块儿选择器
-						tabIteSelector  : ".tab-item", //标签选择器
-						tabActiveClass  : "tab-active",//选中标签类名	
-						anchorSelector  : ".anchor",//锚点选择器
-						wheelStep       : 10,  //滚动步长		
-						correctSelector : ".correct-bat", //校正元素
-						articleSelector :".scroll-ol"//文章选择器		
-					}
-					$.extend(true,self.options,options||{});//为保证代码的健壮性 所以添加个空对象
-					
-					self._initDomEvent();
-					return this; //this就是后面创建的实例(加不加好像没什么影响)
-				},
-
-				/*初始化DOM引用*/
-				/*@return {CuScrollBar}*/
-				_initDomEvent : function(){
-					console.log(this);
-					var opts = this.options;
-					//滚动内容区对象，必填项 
-					this.$cont = $(opts.contSelector);
-					//滚动条滑块对象，必填项
-					this.$slider = $(opts.sliderSelector);
-					//滚动条对象
-					this.$bar = opts.barSelector ? $(opts.barSelector):self.$slider.parent();
-					//标签项
-					this.$tabItem = $(opts.tabIteSelector);
-					//锚点项
-					this.$anchor = $(opts.anchorSelector);
-					//正文
-					this.$article = $(opts.articleSelector);
-					//校正元素对象
-					this.$correct = $(opts.correctSelector);
-					//获取文档对象
-					this.$doc = $(doc);
-					this._initArticleHeight()
-						._initSliderDragEvent()
-						._bindContScroll()//因为_initSliderDragEvent有返回this 所以可以链式调用
-						._bindMousewheel()
-						._initTabEvent();
-				},
-
-				/*
-				初始化文档高度
-				@return {[Object]} [this]
-				 */
-				_initArticleHeight : function(){
-					var self = this,
-						lastArticle = self.$article.last();
-
-					var lastArticleHeight = lastArticle.height(),
-						contHeight = self.$cont.height();
-
-					if(lastArticleHeight < contHeight){
-						self.$correct[0].style.height = contHeight - lastArticleHeight -
-						self.$anchor.outerHeight()+"px";
-					}
-					return self;
-				},
-
-				/*
-				初始化滑块拖动功能
-				@return {[Object]} [this]
-				 */
-				_initSliderDragEvent:function(){
-					var self =this;  //this层层传递 始终是CusScrollBar这个对象
-					console.log(this);
-					var slider = this.$slider,
-						sliderEl = slider[0];						
-					if(sliderEl){
-						var doc = this.$doc,
-							dragStartPagePosition,
-							dragStartScrollPosition,
-							dragContBarRate;
-					function mousemoveHandler(e){
-						e.preventDefault();
-						console.log("mousemove");
-						if(dragStartPagePosition == null){ 
-							return;		//说明没有在滑块上按下鼠标
-						}
-						self.scrollTo(dragStartPagePosition+(e.pageY - dragStartPagePosition)*dragContBarRate);
-						//e.pageY - dragStartPagePosition为滑块移动距离
-						//scrollTo(内容的滚动高度)
-					}
-					
-					slider.on("mousedown",function(e){  //e是事件对象(jquery包装后的)
-							e.preventDefault();  //阻止事件默认行为
-							console.log("mousedown");
-							dragStartPagePosition = e.pageY;//获取鼠标相对文档顶部的坐标距离
-							dragStartScrollPosition = self.$cont[0].scrollTop;
-							console.log(dragStartScrollPosition);
-							//文档内容向上滚动超出可视区域的长度。 ScrollTop是元素属性！
-							//self.$cont获得的是对象 self.$cont[0]取对象第一个元素
-						
-							dragContBarRate = self.getMaxScrollPosition()/self.getMaxSliderPosition();
-							//dragContBarRate为内容可滚动高度比上滑块可移动距离 同等于内容滚动高度/滑块移动距离
-								
-							doc.on("mousemove.scroll",
-								mousemoveHandler
-							).on("mouseup.scroll",function(e){
-								console.log("mouseup");
-								doc.off(".scroll")  //.scroll为上面绑定的命名空间 相当于off("mousemove mouseup")
-							});
-					});
-					}
-					return self;
-				},
-
-				/*初始化标签切换功能
-				@return {[Object]} [this]*/
-				_initTabEvent : function(){
-					var self =this;
-					self.$tabItem.on("click",function(e){
-						e.preventDefault();
-						var index = $(this).index();
-						self.changeTabSelect(index);
-						//已经滚出可视区的内容高度
-						//+ 指定锚点与内容容器的距离
-						self.scrollTo(self.$cont[0].scrollTop+self.getAnchorPosition(index))
-					})
-					return self;
-				},
-
-				//切换标签的选中
-				changeTabSelect : function(index){
-					var self = this,
-						active = self.options.tabActiveClass;
-					return self.$tabItem.eq(index).addClass(active).siblings().removeClass(active);
-				},
-
-				//获取指定锚点到上边界的像素数
-				getAnchorPosition : function(index){
-					return this.$anchor.eq(index).position().top;
-				},
-
-				//获取每个锚点位置信息的数组
-				getAllAnchorPosition : function(){
-					var self = this,
-						allPositionArr = [];
-					for(var i=0;i<self.$anchor.length;i++){
-						allPositionArr.push(self.$cont[0].scrollTop+self.getAnchorPosition(i));
-					};
-					return allPositionArr;
-				},
-
-				//监听内容的滚动，同步滑块的位置
-				_bindContScroll : function(){
-					var self = this;
-					self.$cont.on("scroll",function(){
-						var sliderEl = self.$slider && self.$slider[0];//获取滑块元素
-						if(sliderEl){
-							sliderEl.style.top = self.getSliderPosition()+"px";
-						}//如果滑块存在则计算它的位置
-					});
-					return self;
-				},
-
-				//封装鼠标滚轴滚动事件
-				_bindMousewheel : function(){
-					var self = this;
-					self.$cont.on("mousewheel DOMMouseScroll",function(e){
-						e.preventDefault();
-						var oEv = e.originalEvent,
-							wheelRange = oEv.wheelDelta ? -oEv.wheelDelta/120:(oEv.detail||0)/3;
-						self.scrollTo(self.$cont[0].scrollTop+wheelRange*self.options.wheelStep);
-					});
-					return self;
-				},
-
-
-				//计算滑块儿的当前的位置
-				getSliderPosition : function(){
-					var self = this,
-						maxSliderPosition = self.getMaxSliderPosition();
-						console.log(maxSliderPosition);//maxSliderPosition：滑块可移动距离
-					return Math.min(maxSliderPosition,maxSliderPosition*self.$cont[0].scrollTop/self.getMaxScrollPosition());
-					//取滑块可移动距离与滑块移动距离的最小值
-				},//滑块位置也就是滑块移动距离 通过滚动比率获得
-				//self.$cont[0].scrollTop为内容滚动高度
-				//self.getMaxScrollPosition()为内容可滚动高度
-
-				//内容可滚动的高度
-				getMaxScrollPosition : function(){
-					var self = this;
-					return Math.max(self.$cont.height(),self.$cont[0].scrollHeight)-self.$cont.height();//内容可滚动高度 = 整篇内容的高度-内容可视区的高度
-				},//当内容高度小于可视区的高度，就取内容的高度self.$cont.height()
-
-				//滑块可移动的距离
-				getMaxSliderPosition : function(){
-					var self = this;
-					return self.$bar.height() - self.$slider.height();
-					//滑块可移动的高度(距离) = 滚动条的高度-滑块的高度
-				},
-				scrollTo : function(positionVal){
-					var self = this;
-					var posArr = self.getAllAnchorPosition();
-					//滚动条的位置与tab标签的对应
-					function getIndex(positionVal){
-						for(var i = posArr.length - 1;i >= 0; i--){
-							if(positionVal >= posArr[i]){
-								return i;
-							}else{
-								continue;
-							}
-						};
-					}
-					//锚点数与标签数相同
-					if(posArr.length == self.$tabItem.length){
-						self.changeTabSelect(getIndex(positionVal));
-					}
-					
-					self.$cont.scrollTop(positionVal);
-				}
-				 
-			});
-
-			/*CusScrollBar.prototype._init = function(){
-				console.log("test")
-			}*/ /*在构造函数原型上添加_init方法，将会被构造函数CusScrollBar创建的实例所共享*/ 
-
-			Scroll.CusScrollBar = CusScrollBar; /*给全局对象添加属性为构造函数CuScrolBar*/
-			                                    /*等于将匿名函数里的方法暴露出来,也可以用实参里的window作为全局对象，然后win.···调用，但不建议*/
-
-		})(window,document,jQuery);
-		//通过传入实参，可以使window、document、jQuery对象变为自调用函数的局部变量（即把函数参数作为局部变量使用），
-		//这样当在代码块中访问这些对象时，不需要将作用域链回退到顶层作用域，从而可以更快地访问这些对象，
-		//通过创建一个自调用匿名函数，创建了一个特殊的函数作用域，该作用域中的代码不会和已有的同名函数、方法和变量以及第三方库冲突。
-
+			    margin:10px auto;
+			}
+			.mulu{
+			    background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADUAAAAoCAYAAABerrI1AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyNpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNS1jMDE0IDc5LjE1MTQ4MSwgMjAxMy8wMy8xMy0xMjowOToxNSAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIChNYWNpbnRvc2gpIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOkNFN0E3M0IwMjc4NDExRTU5RkYxQjg1Rjk2QkEyNzBEIiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOkNFN0E3M0IxMjc4NDExRTU5RkYxQjg1Rjk2QkEyNzBEIj4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6N0M1ODVCRkYyNzg0MTFFNTlGRjFCODVGOTZCQTI3MEQiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6N0M1ODVDMDAyNzg0MTFFNTlGRjFCODVGOTZCQTI3MEQiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz5uTX6PAAAA0UlEQVR42uyXsQrCMBRFX4p0V39Pv8FJcekHFJe6d+v3NY6CDvUFooQ0AcEllnPhlgz3QU6bBq6ZnvdaRC7qndqoB/VR/ZC5wuxGytLtvXejUJ0uDlGgVZ8Tg6lsaWod1Jh461a9TQyMBX6hWLaSBary5zBWn8kPf8DUr/Rx8hfEPth4kxkIs+tCL4rG/VOLPH5AAQUUUEABBRRQv0O54nf1tcL6dZ3Jh9mpMH/2TkmkJFISKYmURKCAAgoooIACCihKIiWRkkhJpCR+XxJfAgwA/ROhOlYvoWQAAAAASUVORK5CYII=
+);              background-size:contain;
+                width:23px;
+			    height:15px;
+			}
+			.ziti{
+			    background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEYAAAAuCAYAAACViW+zAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyNpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNS1jMDE0IDc5LjE1MTQ4MSwgMjAxMy8wMy8xMy0xMjowOToxNSAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIChNYWNpbnRvc2gpIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOjBCRTkzQUQ3Mjc4NzExRTU5RkYxQjg1Rjk2QkEyNzBEIiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOjBCRTkzQUQ4Mjc4NzExRTU5RkYxQjg1Rjk2QkEyNzBEIj4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6Q0U3QTczQkEyNzg0MTFFNTlGRjFCODVGOTZCQTI3MEQiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6MEJFOTNBRDYyNzg3MTFFNTlGRjFCODVGOTZCQTI3MEQiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz6/hjRDAAAFqklEQVR42uRaaWwVVRi9fTbYqoBoEGIVrDsBA6JRAY0VSkQUl7pQI8YQGjTRaNCgBtdoApho3aoRRJaIC25/VBTBCiqCuKX+QDFqFANRsRCtsRWr9XzxNBnu++6bO/fNe9i+k5y0c2fmzrwz3/22mbKuv9pNChgCLgLHgBvABnCr6Qkor1CHy1ISZjVYG9leC55V6sLsB/4ucynj7T1VmEwKU09VRBHUmx6MNIS5JuF4SQhzIniKY5+MjypVYa4OtKb/PfJxvn3B7eABOY4Rp3wo2FZKzndajCiG+68otaWkLaP23rKcQoWRDHekMj5DGZPjTisVYWYqY+vB5/g3qZPuFcIMYFJn4wnrr50EDujtwlwFVlpjreBL/P9lbkdRyfMKBcmn7gRfAbeAO8G/wS7yT3Ab+AHYBF4I7ptmuJbUfzN4vDXeCN4U2X4AvNE65gtwOG80rYc6ndcdFnD+DnAe+ChCdme+wpzJyjmKLgr1VWTsOAph11A14LoURBkKrgBPTWGu98CLIE5rPktJC73NliiG5vxOgUK3WN3GlEQRnAG+Zjo7+oQKMxCsU8YXOI7XnHAd5wnFQeAb4GBl37fgXeDp4CGS09Jiy+hPxMoud0RNSSduDV1Kt4DzrbEfecHdyvHyBKSLN8galxu4L1CYp5lxRyGO9WbwcbDT00/OtYVg2VKFJdWWxGIyjtxliUMUw/HFjhwoJBqOVMoLuca54COeonT7xDmMUHbtV5d0KU0Ej7TG/gEXxpy3kMdFIfPUBghzneLMJUS/HTCXiPOYMl6bVBgtc30T/C7mPNm/KgUnvA94iTX2Cy0lFO87rNJbmCpwiqdz9XXCUzivLyqZK21g4tadSObTU96q5FSHJxFmBj18FD8wOvhgJY/fowviKDhz9XXuBccy4kg/eWkKofo3a/tAX2HkBzQo44sSODs57illvEER3Ac7mdxtTEGY/UNrpXOi5hXzQ3NBE1LmnbyXasSTafHlocJoTvJVFmRJsI3n7a12xCD6tfnM0j8CJ4UWkUeA3yjinQ2+FXBzkxS/JKH8KI/o5oP+4LHgMWA177+a20O8ZymvKDMxa9yViK1Kue0xkwlXyLmy1M/jw6pO08RcFiPp/PeOmiRt5CorcvWEbgePDrzmbpYld7gsxiXMpeALRXSGl4Evei6XpWw0JcEf7CN9Bn4Ivs4H0pVUmDXghCIK0+xxvT70UeMd+yXx+5RhfDOrbXH68u5rV47SwFsYcWBfFrDJVKP0arRmlw2tKyj4GnwYfJY5TtKaSRUm4wihtigi1LspWcc6zme3AnKFbnGs1yo/ai4bV00BogyM8+xRVBi9ab3ApNer7XI0t7Qmezemm+zm9f3gbQmddhQnJBFGKtiDrTFZa8tS9inLlAJQrnux4/gJSu10T573MD6JMFqmuyKH8wrFLkfUc7Ujhlvbn1Cc4DTF6O/GVGFGgOMczaZCQFtO4xQTzzBM21acD+rjcqBMzNNqYQ+kEJB5P/eon6RssD8jGWb0z9t8cBj4oE9aLZDPNaZ5PtU0oTWxtM9LWqxtyZTPD7ievO9abbIb9JHeQUcmKsxUxVxlDS8vsDDLFV/R32R/2LhSOfdJ4/8VhfRdZoEfmz3fomoRbXBUGG0ZPWMK/yVUGxOzuOW0mGm9nYes531eQCvqXl7lrNrr2QuSNmajZYm/gjco1x7RnfkOdZT9o1lbFBqjGWW0pC56X9czw42DtCv7xvig7VyKP5vsL9gfQvY7Syymw2S/4thUJFEM65tNisO1I4+8EZjnkWj2ixFFLHQUH4b0ordY+6+En+knwvzElDoaCmeb4mK2JUQT78vGHPZeWhLOL3M/D55k/ntptyOy724l0WyMFpE1jO3NrEyLDVk6E1lIrvU4fgxFGkv/UsWSQnxHK5dhC/3QGqe/dHy1+a8AAwCKR08FSRIHxQAAAABJRU5ErkJggg==
+);			    background-size:contain;
+                width:23px;
+			    height:15px;
+			}
+			.current .ziti{
+				width: 22px;
+				height: 15px;
+				background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEwAAAA0CAYAAAAg5t6HAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyNpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNS1jMDE0IDc5LjE1MTQ4MSwgMjAxMy8wMy8xMy0xMjowOToxNSAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIChNYWNpbnRvc2gpIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOkNFN0E3M0I4Mjc4NDExRTU5RkYxQjg1Rjk2QkEyNzBEIiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOkNFN0E3M0I5Mjc4NDExRTU5RkYxQjg1Rjk2QkEyNzBEIj4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6Q0U3QTczQjYyNzg0MTFFNTlGRjFCODVGOTZCQTI3MEQiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6Q0U3QTczQjcyNzg0MTFFNTlGRjFCODVGOTZCQTI3MEQiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz7nhaYNAAANmElEQVR42uxbC1RV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);
+				background-size: contain;
+			}
+			.day{
+			    background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADkAAAA5CAYAAACMGIOFAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyNpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNS1jMDE0IDc5LjE1MTQ4MSwgMjAxMy8wMy8xMy0xMjowOToxNSAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIChNYWNpbnRvc2gpIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOkNFN0E3M0I0Mjc4NDExRTU5RkYxQjg1Rjk2QkEyNzBEIiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOkNFN0E3M0I1Mjc4NDExRTU5RkYxQjg1Rjk2QkEyNzBEIj4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6Q0U3QTczQjIyNzg0MTFFNTlGRjFCODVGOTZCQTI3MEQiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6Q0U3QTczQjMyNzg0MTFFNTlGRjFCODVGOTZCQTI3MEQiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz6o6V5PAAADu0lEQVR42uyaTUgVURTHm/cigiS1LEitoHoqbgtcZAStngtDoYxa9rFsYYuWfUBhuSjCneiylkH2oavoEZlC4aYsM9toakWLnpsWyfQfOMJrOvdjZs6bedQc+OF7d9499/y9M/fj3HFc110Xo3WAYfp8BozG0agTs8hFsIM+L4H6f1GkvzEnjkYz6/4DS0WmIlORSlsq+bxcKSI3gkHwBlwSGA3PkrjPNE+GnhXAZYprkOLUjOmYQjT0un/aMHAMdcqNQ3GUWq+ujqknt/i+nwZDcc1vih4cojh0cQbqyQaw4P5tSfQo14OezYNGXV0b5zly5Le+mEX2KQTmTHVtl3U58BQ0lpQtgJ2Gei2gE7SDVrANVIMf4Bt4B56Dh+C9wdc80/4RMGteTNr/J/09+lhzW3WBCTeYTVA91WPwKGgPBrldS9kFBkA/qGOuN4FnbjTz6jczvuuoXa/93UHilnxmjoMVV8ZWyJ9IbFICz4FVV9ZWyW9FiDwGfmmCnQIXQBuoBxvobxuVT2nqen57khbpPYNFRYBzoNtiPnXod3MKP0VqJxGRjmaQGQXVAf1VUz3VYOQkIbJLEdADkA3pM0v1OetKQuQ4E8gHUBXxEfDqzzC+x+MW2aL4b+eFRuu8wn9LGH9hN82dTNlrMCa02xgjf347GmdmoJ0puyu8rbrHlB2MU2QrUzYuLLJg2a6VyA7KbLsMi3Tdb9sVuwRJ+2TZrjF+b+4pTd2rkk/1hky4Z+vBapkz7lzW3Ri/ze3KpTqKTNlmYYG1TNlKmJRJpiSDxpkqq/aVKdsrLHIPU/ZFkwFUxu/dYk8M3c3ZNNjnKzsEXgmKPKxo12/G+MOOri+YslPCPXnSst2yTSEjTNkBkBcSmCd/Nu1aDF/hl15cDmdGYO26SXrtGuUs5AZT1kQrn2xIn1la6TQx1/rDT0TR9pMFxUL6fogeraJ6nBWS2k+uZQZUyauPtOO38dNNv1cltZqTzvH0WOZ49oMaqlND321yPCfSbF2ad5UXufaMFiIKLER9BqOK9Ea4m2CZEk61mrOQyYDiJjUpzFpqb5nad8olkjsfvG6RC7oIRsBsSY62SN9H6Lopd3MtyvmorcCM4gD0dkxnk7eiHARHEWg84RWkUXPinZEQeSXsCa8wOYXQqxIi31aAQN3R/rTEAv1lqCNs3taSTqoEmclmqf2FIFlCm3cGvBeBzoOt4I7vraqgJvW+awPF9B0MgJ9RRZYz+5a+75qKTEWmIstuFfm+q7RJve8ayH4LMACaxEJEaXs23AAAAABJRU5ErkJggg==);
+    		    background-size:contain;
+			    width:16px;
+			    height:16px;
+			}
+			.night{
+			    background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyNpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNS1jMDE0IDc5LjE1MTQ4MSwgMjAxMy8wMy8xMy0xMjowOToxNSAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIChNYWNpbnRvc2gpIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOkU2OUYzRUEwMjc4NzExRTU5RkYxQjg1Rjk2QkEyNzBEIiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOjhBMzA2RjA2Mjc4QTExRTU5RkYxQjg1Rjk2QkEyNzBEIj4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6RTY5RjNFOUUyNzg3MTFFNTlGRjFCODVGOTZCQTI3MEQiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6RTY5RjNFOUYyNzg3MTFFNTlGRjFCODVGOTZCQTI3MEQiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz4v5YACAAAC/UlEQVR42tSaXYhNURTH97kzRnJ9ZTQzPh7IMEr5yshHEwkRkSeSjweEiMjDePTkhcKLPCApUV54GxTKcDM0JfL9QE0UGdcdEmb7L3edOq5zzz1nn332Pvdfv5e5Z9Zd666711577etIKYUGjQILwRwwDOwDfcKAamP873CwBawDrcABP8ACU87/FWUgIk3gKMjL/7VfwV4sojxcCw6AL9JfD0DGdABhv0KTwAUwO+CZvaBfGFaYAJaDyyAb8Mwt0CksKFPh9W3gWgXnSSeFJTkBZXQrOM3VJUi9oJErUGoysBKcCuE86YYt58sF0MILtiakjTvCojI+i/o876Zh9ThNARysUCr99NpmAN5FTAvxBRgS0QZlK5+GDLQrOC9sOu/NADVm70LU+9RmYJOi8yLigk8sgPUxbEy0HUATH0RUNdV2AG0hd9xyarMdwNyYNhaDOpsBTI5pYwRYYTMAHYtwh80ARmqws1ShBdEWwGAdGyI4HrMYKAegawFSMdhlo5XIK/ZAfvoO5oFukxn4oNHeID5DjzUZwCvNNsn5DjDOVADPErA7BdwF0xP2v4YCyCVknDJwjxe2k8AHT4O0VTSeawD9Mll1glZN48T5IMc+N7p/7JJm1AFWg4ERna4Da8F1j62cdzZKY5RZBtbcEuYzuAlugyfgOSjwyS7LJ8QJYJoojuuX+RycLnqPlPXgLZfBalCB11iveyL7CM6K6tEZURxp/jNWGc2pzFbBp98M3peOVXrA4Sr49I+4zpdmgDSA94UZKXX+ITeNP8sFIDg9XWBoypyni0O6THzqN1bx6iXYCH6nyHnyZXOp8+UCIF0Fe1LiPH1FdoMr/q8G74DbwS9pT/TeO+Nes64JuFpNUl+5fdByT9wMHhl0vhu06L7opobqEPiWoON9oJ0v1bXf1LuMAcdAQbPjJ6g9juqPE+PXKvVcbjeAmQqHFsmb5iVwzu1tVKYSOkpdA1jEU246To4XxZ/gZLlUU5v8CbzhI+x9bqV74r7xHwEGAPDRVwnecW5KAAAAAElFTkSuQmCC
+);              background-size:contain;
+			    width:16px;
+			    height:16px;
+			}
+			.artical-action-mid{
+			    position:fixed;
+			    z-index:100002;  /*需要管理*/
+			    width:100%;
+			    height:50%;
+			    top:20%;
+			}
 			
-		var scroll = new Scroll.CusScrollBar({  /*实例化构造函数*/	
-				contSelector 	: ".scroll-cont", //滚动内容区选择器
-				barSelector     : ".scroll-bar", //滚动条选择器
-				sliderSelector  : ".scroll-slide", //滚动滑块选择器								
-		});
-		// var scroll2 = new Scroll.CusScrollBar({  /*实例化构造函数*/	
-		// 		contSelector 	: ".scroll-wrap-2", //滚动内容区选择器
-		// 		barSelector     : ".scroll-bar-2", //滚动条选择器
-		// 		sliderSelector  : ".scroll-slide-2", //滚动滑块选择器								
-		// });   
-		console.log(scroll);
-		//console.log(scroll2);		   
-	</script>
+		</style>
+	</head>
+	<body>
+		<div id="root" class="contaniner">
+		    <div class="m-artical-action">
+		    <div class="artical-action-mid" id="action_mid"></div>
+		    </div>
+		    <div id="top-nav" class="top-nav" style="display:none">
+		        <div class="icon-back"></div>
+		        <div class="nav-title">返回书架</div>
+		    </div>
+		    <div id="fition_chapter_title"></div>
+		    <div id="fition_container" class="m-read-content">
+		          
+		    </div>
+		    <div class="m-button-bar">
+		        <ul class="u-tab">
+		            <li id="prev_button">上一章</li>
+		            <li id="next_button">下一章</li>
+		        </ul>
+		    </div>
+		</div>
+		<div class="nav-pannel-bk font-container" style="display:none"></div>
+		<div class="nav-pannel font-container" style="display:none">
+		    <div class="child-mod">
+		        <span>字号</span>
+		        <button id="large-font" class="font-size-button">大</button>
+		        <button id="small-font" class="font-size-button">小</button>
+		    </div>
+		    <div class="child-mod" id="bk-container">
+		        <span>背景</span>
+		    </div>
+		</div>
+		<div id="footer_nav" class="footer-nav" style="display:none">
+		        <ul>
+		            <li>
+		                <span class="tubiao mulu"></span>
+		                <span class="wenzi">目录</span>
+		            </li>
+		            <li id="font-button">
+		                <span class="tubiao ziti"></span>
+		                <span class="wenzi">字体</span>
+		            </li>
+		            <li id="night-day">
+		                <span class="tubiao night"></span>
+		                <span class="wenzi">夜间</span>
+		            </li>
+		        </ul>
+		</div>
+		<script src="lib/zepto.min.js"></script>
+		<script>
+			window.jQuery = $;      /*这个$是zepto的$,目的是支持下面两个jq插件能正常使用*/
+		</script>
+		<script src="js/jquery.base64.js"></script>
+		<script src="js/jquery.jsonp.js"></script>
 
-</body>
+		<script>
+			(function(){    /*生成一个闭包*/
+		    'use strict'   //在闭包的最开始做一个声明
+			    var Util =(function(){  //内部类
+			        var prefix = 'html5_reader_';
+			        var StorageGetter = function(key){
+			            return localStorage.getItem(prefix + key);
+			        }
+			        var StorageSetter = function(key,val){
+			            return localStorage.setItem(prefix + key,val);
+			        }
+			        var getBSONP = function(url,callback){
+			            return $.jsonp({
+			                url : url,
+			                cache:true,
+			                callback:'duokan_fiction_chapter', //此callback非传参的callback
+			                success: function(result){
+			                    var data =$.base64.decode(result);//得到的是json数据
+			                    var json = decodeURIComponent(escape(data));//js原生自带的方法
+			                    callback(json);
+			                }
+			                
+			            })
+			        }
+			        return{
+			            getBSONP:getBSONP,
+			            StorageGetter:StorageGetter,
+			            StorageSetter:StorageSetter
+			        }
+			    })();
+
+			    var Dom = {
+			        top_nav :$('#top-nav'),
+			        footer_nav :$('#footer_nav'),
+			        font_button:$('#font-button'),
+			        font_container:$('.font-container'),
+			        bk_container:$('#bk-container'),
+			        night_day:$('#night-day'),
+			        font_night:$('#font_night'),
+			        change_icon:$("#night-day .tubiao"),
+			        change_text:$("#night-day .wenzi")
+			        
+			    }
+			    var Win = $(window);
+			    var Doc = $(document);
+			    var readerModel;
+			    var readerUI;
+			    var RootContainer = $('#fition_container');
+			    var initFontSize = Util.StorageGetter('font_size');
+			    initFontSize = parseInt(initFontSize);
+			    if(!initFontSize){
+			        initFontSize = 14;
+			    }
+			    RootContainer.css('font_size',initFontSize);
+			    
+			   function BackGround(){
+			      //字体和背景的颜色表
+						var colorArr = [{
+							value : '#f7eee5',
+							name : '米白',
+							font : ''
+						}, {
+							value : '#e9dfc7',
+							name : '纸张',
+							font : '',
+							id : "font_normal"
+						}, {
+							value : '#a4a4a4',
+							name : '浅灰',
+							font : ''
+						}, {
+							value : '#cdefce',
+							name : '护眼',
+							font : ''
+						}, {
+							value : '#283548',
+							name : '灰蓝',
+							font : '#7685a2',
+							bottomcolor : '#fff'
+						}, {
+							value : '#0f1410',
+							name : '夜间',
+							font : '#4e534f',
+							bottomcolor : 'rgba(255,255,255,0.7)',
+							id : "font_night"
+						}];
+
+						var bkCurColor = Util.StorageGetter('background_color');
+						for(var i = 0;i<colorArr.length;i++){
+						    var display = 'none';
+						    if(bkCurColor == colorArr[i].value){
+						        display ='';
+						    }
+						Dom.bk_container.append('<div class="bk-container" id="'+colorArr[i].id+ '"data-color="'+colorArr[i].value+'" style="background-color:'+colorArr[i].value +'"><div class="bk-container-current" style="display:'+display+'"></div><span style="display:none">'+colorArr[i].name+'</span></div>');
+					}
+		    	if (bkCurColor) {
+							$('body').css('background-color', bkCurColor);
+				}
+			    if (bkCurColor == "#0f1410"){
+			          show_day();		          
+			    }
+			   
+			   }
+
+
+				//todo 实现和阅读器相关的数据交互的方法(跟服务器相关的)			    
+			    function ReaderModel(){			        
+			        var Chapter_id;
+			        var ChapterTotal;  //存总共的章节数
+			        var init = function(UIcallback){
+			          /*  getFictionInfo(function(){  //获得章节信息 然后传一个回调进来
+			                getCurChapterContent(Chapter_id,function(data){
+			                    //TODO...
+			                    UIcallback && UIcallback(data);
+			                });
+			            }) */
+			            getFictionInfoPromise().then(function(d){
+		                    return getCurChapterContentPromise();
+			                }).then(function(data){    // function(data)等同下面写的resolve(data);
+			                    
+			                UIcallback && UIcallback(data);
+			               
+			            })
+			        }
+			        var gotoChapter = function(chapter_id){
+						Chapter_id = chapter_id;
+						getCurChapterContent(Chapter_id);
+					};
+			       /* var getFictionInfo = function(callback){  //如果数据没有回调 那数据传给谁呢
+			            $.get('data/chapter.json',function(data){
+			                //TODO 获得章节信息之后的回调
+			                Chapter_id = Util.StorageGetter('last_chapter_id');
+			                if(Chapter_id == null){
+			                     Chapter_id = data.chapters[1].chapter_id;
+			                }
+			                ChapterTotal = data.chapters.length;
+			                callback && callback();
+			            },'json');
+			        }*/
+			        var getFictionInfoPromise = function(){
+			           return new Promise(function(resolve,reject){
+			             $.get('data/chapter.json',function(data){
+			                //TODO 获得章节信息之后的回调
+			                if(data.result == 0){
+			                     Chapter_id = Util.StorageGetter('last_chapter_id');
+			                    if(Chapter_id == null){
+			                     Chapter_id = data.chapters[1].chapter_id;
+			                   }
+			                   ChapterTotal = data.chapters.length;
+			                   resolve();
+			               }else{
+			                   reject();
+			               }
+			            },'json');
+			        });
+			        }
+			       
+			      /*  var getCurChapterContent = function(chapter_id,callback){
+			            $.get('data/data' + chapter_id +'.json',function(data){
+			                if(data.result == 0){
+			                    var url =data.jsonp;
+			                    Util.getBSONP(url,function(data){
+			                        callback && callback(data);
+			                    });
+			                }
+			            },'json')
+			        }
+			       */
+			        var getCurChapterContentPromise = function(){
+			           return new Promise(function(resolve,reject){
+			            $.get('data/data' + Chapter_id +'.json',function(data){
+			                if(data.result == 0){
+			                    var url =data.jsonp;
+			                    Util.getBSONP(url,function(data){
+			                       resolve(data);
+			                    });
+			                } else{
+			                    reject({mag:'fail'});
+			                }
+			            },'json')
+			        });
+			        }
+			       
+			        var getCurChapterContent = function(chapter_id){
+			            $.get('data/data' + chapter_id +'.json',function(data){
+			                if(data.result == 0){
+			                    var url =data.jsonp;
+			                    Util.getBSONP(url,function(data){
+			                        readerUI(data);
+			                    });
+			                }
+			            },'json')
+			        }
+			        var prevChapter = function(UIcallback){   //写完函数再写回调
+			            Chapter_id = parseInt(Chapter_id,10);//因为Chapter_id是内部的全局变量 所以没必要当传参
+			            if(Chapter_id == 0){
+			                return;        //不能上翻
+			            }
+			           // var cid = Chapter_id - 1;
+			            Chapter_id -= 1;
+			            //getCurChapterContent(Chapter_id,UIcallback);
+			            gotoChapter(Chapter_id);
+			            Util.StorageSetter('last_chapter_id',Chapter_id);
+			        }
+			         var nextChapter = function(UIcallback){
+			            Chapter_id = parseInt(Chapter_id,10);
+			            if(Chapter_id == ChapterTotal){
+			                return;
+			            }
+			            //var cid = Chapter_id + 1;
+			            Chapter_id += 1;
+			            //getCurChapterContent(Chapter_id,UIcallback);
+			            gotoChapter(Chapter_id);
+			            Util.StorageSetter('last_chapter_id',Chapter_id);
+			        }
+			        return {             //把数据层的接口暴露给数据层以外的地方使用
+			            init : init,
+			            prevChapter : prevChapter,
+			            nextChapter : nextChapter
+			        }
+			    }
+
+
+			    //todo 渲染基本的UI结构
+			    function ReaderBaseFrame(container){    
+			        function parseChaperData(jsonData){
+			            var jsonObj = JSON.parse(jsonData);
+			            var html ='<h4>' + jsonObj.t + '</h4>';
+			            for(var i = 0;i<jsonObj.p.length;i++){
+			                html += "<p>" + jsonObj.p[i] +'</p>';
+			            }
+			            return html;
+			        }
+			        return function(data){
+			            container.html(parseChaperData(data));
+			        }
+			    }
+
+			    function show_day(){
+			    	Dom.change_icon.removeClass('night').addClass('day');
+			        Dom.change_text.text("白天");  //html()也可以喔
+
+			    }
+
+			    function show_night(){
+			    	Dom.change_icon.removeClass('day').addClass('night');
+			        Dom.change_text.text("夜间"); 
+			    }
+
+				 //todo 交互的事件绑定		    
+			    function EventHanlder(){
+			        //touch
+			        //zepto tap
+			        //4.0之前用click会有300ms延迟
+			        //后面click和tap没区别
+			        //tap在PC端必须打开模拟器才能响应
+			        Dom.night_day.click(function(){
+			            if($("#night-day .wenzi").text()=="夜间"){
+			                show_day();
+			                $('body').css('background-color', '#0f1410');
+			                $('.bk-container>div').hide();
+			                $('#font_night>.bk-container-current').show();
+			                Util.StorageSetter('background_color','#0f1410');
+			            }else{
+			                show_night();
+			                $('body').css('background-color', '#e9dfc7');
+			                $('.bk-container>div').hide();
+			                $('#font_normal>.bk-container-current').show();
+			                Util.StorageSetter('background_color','#e9dfc7');
+			            }
+			            
+			        });
+			        $('#action_mid').click(function(){
+			            if(Dom.top_nav.css('display') == 'none'){
+			               Dom.footer_nav.show();
+			               Dom.top_nav.show();
+			            }else{
+			               Dom.footer_nav.hide();
+			               Dom.top_nav.hide();
+			            }
+			             Dom.font_container.hide();
+			             Dom.font_button.removeClass('current');
+			            });
+			          Dom.font_button.click(function(){
+			             if(Dom.font_container.css('display')=='none'){
+			                 Dom.font_container.show();
+			                 Dom.font_button.addClass('current');
+			             }else{
+			                  Dom.font_container.hide();
+			                   Dom.font_button.removeClass('current');
+			             }
+			         });
+			         
+			         Dom.bk_container.delegate('.bk-container','click',function(){
+			             var color = $(this).data('color');
+			             if(color == "#0f1410"){
+			             	show_day();
+			             }else{
+			             	show_night();
+			             }
+			             var font = $(this).data('font');
+			             Dom.bk_container.find('.bk-container-current').hide();
+			             $(this).find('.bk-container-current').show();
+			             $('body').css('background-color',color);
+			             Util.StorageSetter('background_color',color);
+			         });
+			         
+			         $('#night-button').click(function(){
+			             //TODO 触发背景切换事件
+			         });
+			         
+			         $('#large-font').click(function(){
+			             if(initFontSize>20){
+			                 return;
+			             }
+			             initFontSize += 1;
+			             RootContainer.css('font-size',initFontSize);
+			             Util.StorageSetter('font_size',initFontSize);
+			           }); 
+			           
+			          $('#small-font').click(function(){
+			              if(initFontSize<12){
+			                  return;
+			              }
+			             initFontSize -= 1;
+			             RootContainer.css('font-size',initFontSize);
+			             Util.StorageSetter('font_size',initFontSize);
+
+			           }); 
+
+			        //window对象上的scroll方法(jquery事件)
+			      	Win.scroll(function(){
+			          Dom.footer_nav.hide();
+			          Dom.top_nav.hide();
+			          Dom.font_container.hide();
+			          Dom.font_button.removeClass('current');
+			       });
+			       
+			       $('#prev_button').click(function(){
+			           //TODO ...先获得章节的翻页数据->把数据拿来做渲染
+			         /*  readerModel.prevChapter(function(data){
+			               readerUI(data);
+			           });*/
+			           readerModel.prevChapter();
+			       });
+			       
+			       $('#next_button').click(function(){
+			           //TODO ...先获得章节的翻页数据
+			        /*readerModel.nextChapter(function(data){
+			               readerUI(data);
+			           });*/
+			           readerModel.nextChapter();
+			       });
+			            
+			    }
+
+
+			    //todo 整个项目的入口函数			    
+			    function main(){
+			        readerModel = ReaderModel();
+			        readerUI = ReaderBaseFrame(RootContainer);
+			        readerModel.init(function(data){
+			            readerUI(data); 
+			        });
+			        EventHanlder();
+			        BackGround();
+			    }
+			    
+			    main();
+			    			    			    
+			})();
+		</script>
+	</body>
 </html>
